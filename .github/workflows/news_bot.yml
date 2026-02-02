@@ -2,9 +2,8 @@ name: Bitcoin News Bot
 
 on:
   schedule:
-    # 매 정각마다 실행 (UTC 기준 0분)
     - cron: '0 * * * *'
-  workflow_dispatch: # 수동 실행 버튼 추가
+  workflow_dispatch:
 
 jobs:
   build:
@@ -25,4 +24,8 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run news bot
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        SEARCH_QUERY: '비트코인'
       run: python main.py
