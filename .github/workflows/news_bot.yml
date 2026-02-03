@@ -2,7 +2,9 @@ name: Bitcoin News Bot
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    # 매시간 5분, 35분에 실행 (UTC 기준)
+    # GitHub 서버 지연을 고려해 정각 대신 5분 단위로 설정
+    - cron: '5,35 * * * *'
   workflow_dispatch:
 
 jobs:
